@@ -47,5 +47,5 @@ data.videos.slice(0, 1).forEach(async (video) => {
   const pageContent = await page.text();
 
   console.log({ pageContent });
-  await write("/downloads/content.html", pageContent);
+  await write("./downloads/content.html", pageContent);
 });
