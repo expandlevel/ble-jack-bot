@@ -6,7 +6,7 @@ const impit = new Impit({
   ignoreTlsErrors: true,
 });
 
-const page = await impit.fetch("https://pornhd.josex.net/new/8.html");
+const page = await impit.fetch("https://pornhd.josex.net/new/10.html");
 const content = await page.text();
 
 const $ = cheerio.load(content);
@@ -38,6 +38,6 @@ const data = $(".spisok").extract({
   ],
 });
 
-data.videos.forEach((video) => {
+data.videos.slice(0, 1).forEach((video) => {
   console.log(video);
 });
