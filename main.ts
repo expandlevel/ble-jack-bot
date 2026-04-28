@@ -37,3 +37,5 @@ const data = $(".spisok").extract({
     },
   ],
 });
+
+console.log({ data });
