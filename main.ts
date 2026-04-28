@@ -6,12 +6,12 @@ const impit = new Impit({
   ignoreTlsErrors: true,
 });
 
-const page = await impit.fetch("https://pornhd.josex.net/new/10.html");
-const content = await page.text();
+const pageList = await impit.fetch("https://pornhd.josex.net/new/10.html");
+const pageListContent = await pageList.text();
 
-const $ = cheerio.load(content);
+const $pageListContent = cheerio.load(pageListContent);
 
-const data = $(".spisok").extract({
+const data = $pageListContent(".spisok").extract({
   videos: [
     {
       selector: ".video",
@@ -20,14 +20,14 @@ const data = $(".spisok").extract({
         href: {
           selector: "a:first",
           value: (el) => {
-            const href = $(el).attr("href");
+            const href = $pageListContent(el).attr("href");
             return href;
           },
         },
         thumb: {
           selector: "img:first",
           value: (el) => {
-            const src = $(el).attr("src");
+            const src = $pageListContent(el).attr("src");
             return src;
           },
         },
@@ -38,6 +38,12 @@ const data = $(".spisok").extract({
   ],
 });
 
-data.videos.slice(0, 1).forEach((video) => {
+data.videos.slice(0, 1).forEach(async (video) => {
   console.log(video);
+  if (!video.href) return;
+
+  const page = await impit.fetch(video.href);
+  const pageContent = await page.text();
+
+  console.log({ pageContent });
 });
