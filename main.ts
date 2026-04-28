@@ -38,4 +38,6 @@ const data = $(".spisok").extract({
   ],
 });
 
-console.log({ data });
+data.videos.forEach((video) => {
+  console.log(video);
+});
