@@ -1,5 +1,6 @@
 import { Impit } from "impit";
 import * as cheerio from "cheerio";
+import { write } from "bun";
 
 const impit = new Impit({
   browser: "chrome", // or "firefox"
@@ -46,4 +47,5 @@ data.videos.slice(0, 1).forEach(async (video) => {
   const pageContent = await page.text();
 
   console.log({ pageContent });
+  await write("/downloads", pageContent);
 });
