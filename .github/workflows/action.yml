@@ -1,0 +1,25 @@
+name: Run Code
+
+on: [push]
+
+jobs:
+  save-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl unzip
+
+      - name: Install bun
+        run: |
+          curl -fsSL https://bun.com/install | bash
+          echo "$HOME/.bun/bin" >> $GITHUB_PATH
+          echo "BUN_INSTALL_DIR=$HOME/.bun" >> $GITHUB_ENV
+
+      - name: Install bun dependencies
+        run: bun install
+
+      - run: bun main.ts
