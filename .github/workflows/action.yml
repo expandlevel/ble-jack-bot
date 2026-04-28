@@ -24,7 +24,7 @@ jobs:
       - name: Install bun dependencies
         run: bun install
 
-      - run: bun main.ts
+      - run: bun run start
 
       - name: Commit & Push
         run: |

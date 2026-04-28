@@ -61,8 +61,13 @@ bot.command("list", async (ctx) => {
     ],
   });
 
-  data.videos.forEach((video) => {
+  data.videos.forEach(async (video) => {
     console.log(video);
+    if (!video.thumb) return;
+
+    await ctx.replyWithPhoto(video.thumb, {
+      caption: video.name,
+    });
   });
 
   ctx.reply("ok");
