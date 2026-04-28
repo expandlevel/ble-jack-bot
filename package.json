@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "bun --watch bot.ts",
-    "start": "bun bot.ts",
+    "start": "bun main.ts",
     "push": "git add . && git commit -m 'push' && git push origin main"
   },
   "devDependencies": {

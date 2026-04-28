@@ -1,13 +1,13 @@
 import { Bot } from "grammy";
 import { Impit } from "impit";
 import * as cheerio from "cheerio";
-import demoContent from "./example.content.txt";
+// import demoContent from "./example.content.txt";
 
 const telegramToken = "8687944497:AAFHc7CViumqedmynC0tmx2Wc9LjbgTy2xo";
 
 const bleToken = "503298381:oH2RWICXjZ4PigGna8SGrAumI7Wmrxt6ebk";
 
-const isTelegramMode = false;
+const isTelegramMode = true;
 
 const impit = new Impit({
   browser: "chrome", // or "firefox"
@@ -27,10 +27,10 @@ bot.command("start", (ctx) => {
 });
 
 bot.command("list", async (ctx) => {
-  // const page = await impit.fetch("https://pornhd.josex.net/new/8.html");
-  // const content = await page.text();
+  const page = await impit.fetch("https://pornhd.josex.net/new/8.html");
+  const content = await page.text();
 
-  const content = demoContent;
+  // const content = demoContent;
 
   const $ = cheerio.load(content);
 
