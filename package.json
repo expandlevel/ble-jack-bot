@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun --watch bot.ts",
-    "start": "bun main.ts",
+    "dev": "bun --watch src/bot.ts",
+    "start": "bun src/main.ts",
     "push": "git add . && git commit -m 'push' && git push origin main"
   },
   "devDependencies": {
