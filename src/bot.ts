@@ -50,14 +50,14 @@ const paginationMenu = new Menu<MyContext>("pagination-menu")
   })
   .text("prev", (ctx) => ctx.reply("You pressed A!"));
 
-const showMoreMenu = new Menu("show-more").text("show more", (ctx) => {
-  console.log({ ctx });
+// const showMoreMenu = new Menu("show-more").text("show more", (ctx) => {
+//   console.log({ ctx });
 
-  ctx.reply("You pressed B!");
-});
+//   ctx.reply("You pressed B!");
+// });
 
 bot.use(paginationMenu);
-bot.use(showMoreMenu);
+// bot.use(showMoreMenu);
 
 async function showPageList(ctx: MyContext) {
   ctx.reply(`current page ${ctx.session.pageNumber}`);
@@ -69,7 +69,7 @@ async function showPageList(ctx: MyContext) {
 
     await ctx.replyWithPhoto(pageData.thumb, {
       caption: pageData.name,
-      reply_markup: showMoreMenu,
+      // reply_markup: showMoreMenu,
     });
   }
 
