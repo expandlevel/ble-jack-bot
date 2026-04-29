@@ -111,5 +111,5 @@ for (const video of fakeArray) {
       console.log({ e });
     }
   }
-  console.log({ fullVideoDetails });
+  console.log({ fullVideoDetails: JSON.stringify(fullVideoDetails, null, 2) });
 }
