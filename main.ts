@@ -51,8 +51,11 @@ for (const video of fakeArray) {
   if (!video || !video?.href) break;
 
   // const page = await impit.fetch(video.href);
+  // const page = await impit.fetch(
+  //   "http://pornhd.josex.net/videos/Big-Tits/A-doctor-with-big-tits-pleased-a-guy-with-a-sweet-blowjob.html",
+  // );
   const page = await impit.fetch(
-    "http://pornhd.josex.net/videos/Big-Tits/A-doctor-with-big-tits-pleased-a-guy-with-a-sweet-blowjob.html",
+    "http://pornhd.josex.net/videos/Russian/Gorgeous-Russian-girl-really-wants-to-get-fucked-in-the-pussy.html",
   );
 
   const pageContent = await page.text();
