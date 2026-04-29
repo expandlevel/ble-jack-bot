@@ -26,12 +26,12 @@ jobs:
 
       - run: bun run start
 
-      - name: Commit & Push
-        run: |
-          BRANCH="${GITHUB_REF_NAME}"
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add downloads/
-          git commit -m "Add downloaded files from commit [skip ci]" || echo "Nothing to commit"
-          echo "🚀 Pushing to branch: $BRANCH"
-          git push origin HEAD:$BRANCH
+      # - name: Commit & Push
+      #   run: |
+      #     BRANCH="${GITHUB_REF_NAME}"
+      #     git config user.name "github-actions"
+      #     git config user.email "github-actions@github.com"
+      #     git add downloads/
+      #     git commit -m "Add downloaded files from commit [skip ci]" || echo "Nothing to commit"
+      #     echo "🚀 Pushing to branch: $BRANCH"
+      #     git push origin HEAD:$BRANCH
