@@ -48,35 +48,70 @@ const paginationMenu = new Menu<MyContext>("pagination-menu")
 
     await showPageList(ctx);
   })
-  .text("prev", (ctx) => ctx.reply("You pressed A!"));
+  .text("prev", async (ctx) => {
+    if (ctx.session.pageNumber !== 1) {
+      ctx.session.pageNumber--;
 
-// const showMoreMenu = new Menu("show-more").text("show more", (ctx) => {
-//   console.log({ ctx });
-
-//   ctx.reply("You pressed B!");
-// });
-
+      await showPageList(ctx);
+    }
+  });
 bot.use(paginationMenu);
+
+// const showMoreMenu = new Menu("show-more").text(
+//   {
+//     text: "show more",
+//     payload: "payload",
+//   },
+//   (ctx) => {
+//     console.log({ ctx });
+
+//     const m = String(ctx.match);
+//     ctx.reply(`show more! ${m}`);
+//   },
+// );
 // bot.use(showMoreMenu);
 
 async function showPageList(ctx: MyContext) {
-  ctx.reply(`current page ${ctx.session.pageNumber}`);
+  // const pageNumber = ctx.session.pageNumber;
+  const pageNumber = 20;
 
-  const pageListData = await extractPageList(ctx.session.pageNumber);
+  ctx.reply(`current page ${pageNumber}`);
+
+  const pageListData = await extractPageList(pageNumber);
 
   for (const pageData of pageListData.videos) {
     if (!pageData.thumb) break;
 
+    console.log({ pageData });
+
+    //
+    const showMoreMenu = new InlineKeyboard().text("show more", pageData.slug);
+
+    //
     await ctx.replyWithPhoto(pageData.thumb, {
-      caption: pageData.name,
-      // reply_markup: showMoreMenu,
+      caption: `# ${pageData.name} \n${pageData.duration}`,
+      reply_markup: showMoreMenu,
     });
   }
 
-  ctx.reply(`pagination - page ${ctx.session.pageNumber}`, {
+  ctx.reply(`pagination - page ${pageNumber}`, {
     reply_markup: paginationMenu,
   });
 }
+
+// bot.callbackQuery("click-payload", async (ctx) => {
+//   console.log({ payload: ctx.callbackQuery.message?.reply_markup });
+
+//   await ctx.answerCallbackQuery({
+//     text: `You were curious, indeed!`,
+//   });
+// });
+//
+bot.on("callback_query:data", async (ctx) => {
+  console.log("Unknown button event with payload", ctx.callbackQuery.data);
+  await ctx.answerCallbackQuery(); // remove loading animation
+});
+//
 
 bot.command("start", async (ctx) => {
   await showPageList(ctx);

@@ -31,6 +31,14 @@ export async function extractPageList(pageNumber: number) {
           },
           duration: "span.duration",
           date: "div.vote + div",
+          slug: {
+            selector: "a:first",
+            value: (el) => {
+              const href = $pageListContent(el).attr("href");
+              const lastSlashIndex = Number(href?.lastIndexOf("/"));
+              return href?.slice(lastSlashIndex + 1, -5);
+            },
+          },
         },
       },
     ],
