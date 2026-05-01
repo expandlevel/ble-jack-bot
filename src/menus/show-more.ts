@@ -20,8 +20,6 @@ export const showMoreMenu = new Menu<MyContext>("show-more").text(
 
     if (!href) return;
 
-    ctx.session.selectedVideo = href;
-
     show(href, message_id, ctx);
   },
 );
@@ -39,7 +37,7 @@ async function show(href: string, message_id: number, ctx: MyContext) {
     // if (ctx.chatId) {
     //   return ctx.api.editMessageText(ctx.chatId, message_id, "not found");
     // } else {
-    return ctx.reply("not found");
+    return ctx.api.sendMessage(Number(ctx.chatId), "not found");
     // }
   }
 
@@ -58,9 +56,12 @@ async function show(href: string, message_id: number, ctx: MyContext) {
   //   await ctx.api.deleteMessage(ctx.chatId, message_id);
   // }
 
-  ctx.replyWithMediaGroup(mediaGroup).then(() => {
+  if (!ctx.chatId) return;
+
+  ctx.api.sendMediaGroup(ctx.chatId, mediaGroup).then(() => {
     pageData.title &&
-      ctx.reply(
+      ctx.api.sendMessage(
+        Number(ctx.chatId),
         `
         ${pageData.title} \n\n
         ${linksLabel}

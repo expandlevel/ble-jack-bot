@@ -12,7 +12,7 @@ import { bleApiBaseUrl, config } from "./config";
 import { cleanupFiles } from "./lib/cleanup-files";
 
 function initial(): SessionData {
-  return { pageNumber: 1, selectedVideo: "", videoDownloadLinks: [] };
+  return { pageNumber: 1, videoDownloadLinks: [] };
 }
 
 const bot = new Bot<MyContext>(config.bleExternalToken, {

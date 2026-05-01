@@ -2,7 +2,6 @@ import { Bot, type SessionFlavor, Context, session } from "grammy";
 
 export interface SessionData {
   pageNumber: number;
-  selectedVideo: string;
   videoDownloadLinks: string[];
 }
 
