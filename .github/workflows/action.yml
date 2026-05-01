@@ -3,7 +3,7 @@ name: Run Code
 on: [push]
 
 jobs:
-  save-file:
+  run-external-bot:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -24,7 +24,7 @@ jobs:
       - name: Install bun dependencies
         run: bun install
 
-      - run: bun run start
+      - run: bun run start:external
 
       # - name: Commit & Push
       #   run: |

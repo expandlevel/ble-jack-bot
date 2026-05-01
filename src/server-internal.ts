@@ -1,7 +1,7 @@
 export const server = Bun.serve({
-  port: 6700,
+  port: 6701,
   routes: {
-    "/": (request) => {
+    "/": () => {
       return Response.json({ message: "hi" });
     },
   },

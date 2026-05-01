@@ -1,4 +1,4 @@
-const file = Bun.file(Bun.pathToFileURL("/downloads/fake-text.txt"));
+const file = Bun.file(Bun.pathToFileURL("/downloads/01/video.mp4"));
 
 const fileBuffer = await file.arrayBuffer();
 
