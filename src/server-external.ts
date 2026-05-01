@@ -11,7 +11,7 @@ export const server = Bun.serve({
       const handleUpdate = webhookCallback(bot, "bun");
       return handleUpdate(req);
     },
-    tmp_download: async () => {
+    "/tmp_download": async () => {
       const filePath = `./tmp_download/tmp.mp4`;
       const file = Bun.file(filePath);
 
