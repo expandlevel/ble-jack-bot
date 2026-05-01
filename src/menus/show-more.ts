@@ -10,9 +10,8 @@ export const showMoreMenu = new Menu<MyContext>("show-more").text(
     const caption = ctx.update.callback_query.message?.caption;
     const href = caption?.split("\n")[2];
 
-    // ctx.answerCallbackQuery();
     console.log("show more", { href });
-    ctx.reply(`search for: ${href}`);
+    await ctx.reply(`search for: ${href}`);
 
     // const message = await ctx.reply(`search for: ${href}`);
     // const message_id = message.message_id;
