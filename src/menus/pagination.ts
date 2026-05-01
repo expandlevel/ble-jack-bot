@@ -8,7 +8,9 @@ export const paginationMenu = new Menu<MyContext>("pagination-menu")
     ctx.session.pageNumber++;
 
     const pageNumber = ctx.session.pageNumber;
-    ctx.reply(`current page ${pageNumber}`);
+    ctx.reply(`current page ${pageNumber}`, {
+      reply_markup: paginationMenu,
+    });
 
     showPageList(ctx);
   })
@@ -19,7 +21,9 @@ export const paginationMenu = new Menu<MyContext>("pagination-menu")
       ctx.session.pageNumber--;
 
       const pageNumber = ctx.session.pageNumber;
-      ctx.reply(`current page ${pageNumber}`);
+      ctx.reply(`current page ${pageNumber}`, {
+        reply_markup: paginationMenu,
+      });
 
       showPageList(ctx);
     }

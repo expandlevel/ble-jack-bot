@@ -40,7 +40,9 @@ bot.command("page", (ctx) => {
   if (matchPage) {
     ctx.session.pageNumber = matchPage;
   }
-  ctx.reply(`current page ${ctx.session.pageNumber}`);
+  ctx.reply(`current page ${ctx.session.pageNumber}`, {
+    reply_markup: paginationMenu,
+  });
 });
 
 bot.command("download", async (ctx) => {
@@ -68,8 +70,9 @@ bot.command("test", (ctx) => {
   });
 });
 
-bot.start().catch((reason) => {
-  console.log({ reason });
-});
+bot.start();
+// .catch((reason) => {
+//   console.log({ reason });
+// });
 
 console.log(`Server running at ${server.url}`);

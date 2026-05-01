@@ -4,3 +4,5 @@ accees key = "jxra3sbstmdb7gsusnwsq37wuipa"
 
 secret key = "jz53svkw5rfgvqvjrirmbsffmh2pfsqybeemyfpczqou4yhvc7lki"
 
+// TODO: webhook setup
+// TODO: deploy external and internal bot

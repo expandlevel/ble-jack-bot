@@ -13,15 +13,15 @@ export async function showPageList(ctx: MyContext) {
 
     if (!ctx.chatId) return;
 
-    await ctx.api.sendPhoto(ctx.chatId, pageData.thumb, {
+    ctx.api.sendPhoto(ctx.chatId, pageData.thumb, {
       caption: `# ${pageData.name}\n${pageData.duration}\n${pageData.href}`,
       reply_markup: showMoreMenu,
     });
   }
 
-  if (ctx.chatId) {
-    ctx.api.sendMessage(ctx.chatId, `page ${pageNumber}`, {
-      reply_markup: paginationMenu,
-    });
-  }
+  // if (ctx.chatId) {
+  //   ctx.api.sendMessage(ctx.chatId, `page ${pageNumber}`, {
+  //     reply_markup: paginationMenu,
+  //   });
+  // }
 }
