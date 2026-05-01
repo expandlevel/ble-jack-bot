@@ -8,8 +8,7 @@ export const server = Bun.serve({
       return Response.json({ message: "hi" });
     },
     "/webhook": (req) => {
-      const handleUpdate = webhookCallback(bot, "bun");
-      return handleUpdate(req);
+      return webhookCallback(bot, "bun")(req);
     },
     "/tmp_download": async () => {
       const filePath = `./tmp_download/tmp.mp4`;

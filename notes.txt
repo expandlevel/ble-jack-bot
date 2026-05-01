@@ -1,0 +1,2 @@
+webhook address
+https://tapi.bale.ai/bot503298381:oH2RWICXjZ4PigGna8SGrAumI7Wmrxt6ebk/setWebhook?url=http://104.252.77.32:6700/webhook
