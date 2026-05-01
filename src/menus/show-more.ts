@@ -11,7 +11,7 @@ export const showMoreMenu = new Menu<MyContext>("show-more").text(
     const href = caption?.split("\n")[2];
 
     console.log("show more", { href });
-    await ctx.reply(`search for: ${href}`);
+    ctx.reply(`search for: ${href}`);
 
     // const message = await ctx.reply(`search for: ${href}`);
     // const message_id = message.message_id;
@@ -27,8 +27,9 @@ async function show(href: string, message_id: number, ctx: MyContext) {
   const pageData = await extractPage(href);
 
   if (pageData?.links?.length) {
-    ctx.session.videoDownloadLinks = pageData?.links.map(
-      (link) => link.downloadLink,
+    ctx.session.videoDownloadLinks.set(
+      href,
+      pageData?.links.map((link) => link.downloadLink),
     );
   }
 
@@ -64,6 +65,7 @@ async function show(href: string, message_id: number, ctx: MyContext) {
         `
         ${pageData.title} \n\n
         ${linksLabel}
+        ${href}
         `,
         {
           reply_markup: downloadMenu,

@@ -6,20 +6,22 @@ import { extractPageList } from "./extract-page-list";
 export async function showPageList(ctx: MyContext) {
   const pageNumber = ctx.session.pageNumber;
 
-  ctx.reply(`current page ${pageNumber}`);
-
   const pageListData = await extractPageList(pageNumber);
 
   for (const pageData of pageListData.videos) {
     if (!pageData.thumb) break;
 
-    await ctx.replyWithPhoto(pageData.thumb, {
+    if (!ctx.chatId) return;
+
+    await ctx.api.sendPhoto(ctx.chatId, pageData.thumb, {
       caption: `# ${pageData.name}\n${pageData.duration}\n${pageData.href}`,
       reply_markup: showMoreMenu,
     });
   }
 
-  ctx.reply(`page ${pageNumber}`, {
-    reply_markup: paginationMenu,
-  });
+  if (ctx.chatId) {
+    ctx.api.sendMessage(ctx.chatId, `page ${pageNumber}`, {
+      reply_markup: paginationMenu,
+    });
+  }
 }

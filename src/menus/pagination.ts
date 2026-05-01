@@ -6,12 +6,18 @@ export const paginationMenu = new Menu<MyContext>("pagination-menu")
   .text("next", async (ctx) => {
     ctx.session.pageNumber++;
 
-    await showPageList(ctx);
+    const pageNumber = ctx.session.pageNumber;
+    ctx.reply(`current page ${pageNumber}`);
+
+    showPageList(ctx);
   })
   .text("prev", async (ctx) => {
     if (ctx.session.pageNumber !== 1) {
       ctx.session.pageNumber--;
 
-      await showPageList(ctx);
+      const pageNumber = ctx.session.pageNumber;
+      ctx.reply(`current page ${pageNumber}`);
+
+      showPageList(ctx);
     }
   });

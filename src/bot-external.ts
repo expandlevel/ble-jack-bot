@@ -10,9 +10,10 @@ import { splitFile } from "./lib/split-file";
 import { sendChunks } from "./lib/send-chunks";
 import { bleApiBaseUrl, config } from "./config";
 import { cleanupFiles } from "./lib/cleanup-files";
+import { Menu } from "@grammyjs/menu";
 
 function initial(): SessionData {
-  return { pageNumber: 1, videoDownloadLinks: [] };
+  return { pageNumber: 1, videoDownloadLinks: new Map() };
 }
 
 const bot = new Bot<MyContext>(config.bleExternalToken, {
@@ -27,7 +28,10 @@ bot.use(downloadMenu);
 bot.use(showMoreMenu);
 
 bot.command("start", async (ctx) => {
-  await showPageList(ctx);
+  const pageNumber = ctx.session.pageNumber;
+  await ctx.reply(`current page ${pageNumber}`);
+
+  showPageList(ctx);
 });
 
 bot.command("page", (ctx) => {
@@ -49,6 +53,19 @@ bot.command("download", async (ctx) => {
   cleanupFiles();
 
   ctx.reply(`internal-download ${chunkIds}`);
+});
+
+const testMenu = new Menu("test-menu").text("test", (ctx) => {
+  ctx.reply("ok");
+  setTimeout(() => {
+    ctx.chatId && ctx.api.sendMessage(ctx.chatId, "ok 2");
+  }, 5000);
+});
+bot.use(testMenu);
+bot.command("test", (ctx) => {
+  ctx.reply("test", {
+    reply_markup: testMenu,
+  });
 });
 
 bot.start();

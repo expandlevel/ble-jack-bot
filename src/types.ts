@@ -2,7 +2,7 @@ import { Bot, type SessionFlavor, Context, session } from "grammy";
 
 export interface SessionData {
   pageNumber: number;
-  videoDownloadLinks: string[];
+  videoDownloadLinks: Map<string, string[]>;
 }
 
 export type MyContext = Context & SessionFlavor<SessionData>;
