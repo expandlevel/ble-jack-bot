@@ -12,9 +12,12 @@ export const showMoreMenu = new Menu<MyContext>("show-more").text(
 
     // ctx.answerCallbackQuery();
     console.log("show more", { href });
+    ctx.reply(`search for: ${href}`);
 
-    const message = await ctx.reply(`search for: ${href}`);
-    const message_id = message.message_id;
+    // const message = await ctx.reply(`search for: ${href}`);
+    // const message_id = message.message_id;
+    const message_id = 0;
+
     if (!href) return;
 
     ctx.session.selectedVideo = href;
@@ -33,11 +36,11 @@ async function show(href: string, message_id: number, ctx: MyContext) {
   }
 
   if (!pageData || !pageData.screenshots.length) {
-    if (ctx.chatId) {
-      return ctx.api.editMessageText(ctx.chatId, message_id, "not found");
-    } else {
-      return ctx.reply("not found");
-    }
+    // if (ctx.chatId) {
+    //   return ctx.api.editMessageText(ctx.chatId, message_id, "not found");
+    // } else {
+    return ctx.reply("not found");
+    // }
   }
 
   const mediaGroup: InputMediaPhoto[] = pageData.screenshots.map(
@@ -51,20 +54,20 @@ async function show(href: string, message_id: number, ctx: MyContext) {
     .map((link) => `${link.quality}`)
     .join(" | ");
 
-  if (ctx.chatId) {
-    await ctx.api.deleteMessage(ctx.chatId, message_id);
-  }
+  // if (ctx.chatId) {
+  //   await ctx.api.deleteMessage(ctx.chatId, message_id);
+  // }
 
-  await ctx.replyWithMediaGroup(mediaGroup);
-
-  pageData.title &&
-    ctx.reply(
-      `
+  ctx.replyWithMediaGroup(mediaGroup).then(() => {
+    pageData.title &&
+      ctx.reply(
+        `
         ${pageData.title} \n\n
         ${linksLabel}
         `,
-      {
-        reply_markup: downloadMenu,
-      },
-    );
+        {
+          reply_markup: downloadMenu,
+        },
+      );
+  });
 }
