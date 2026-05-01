@@ -1,4 +1,4 @@
-import { Api, Bot, session } from "grammy";
+import { Bot } from "grammy";
 
 import { server } from "./server-internal";
 import { bleApiBaseUrl, config } from "./config";
