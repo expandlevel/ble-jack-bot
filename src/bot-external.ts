@@ -3,15 +3,13 @@ import type { MyContext, SessionData } from "./types";
 import { showPageList } from "./lib/show-page-list";
 import { paginationMenu } from "./menus/pagination";
 import { downloadMenu } from "./menus/download";
-// import { showMoreMenu } from "./menus/show-more";
+import { showMoreMenu } from "./menus/show-more";
 import { server } from "./server-external";
 import { downloadFile } from "./lib/download-file";
 import { splitFile } from "./lib/split-file";
-import { mergeChunks } from "./lib/merge-chunks";
 import { sendChunks } from "./lib/send-chunks";
 import { bleApiBaseUrl, config } from "./config";
 import { cleanupFiles } from "./lib/cleanup-files";
-import os from "node:os";
 
 function initial(): SessionData {
   return { pageNumber: 1, selectedVideo: "", videoDownloadLinks: [] };
@@ -26,7 +24,7 @@ const bot = new Bot<MyContext>(config.bleExternalToken, {
 bot.use(session({ initial }));
 bot.use(paginationMenu);
 bot.use(downloadMenu);
-// bot.use(showMoreMenu);
+bot.use(showMoreMenu);
 
 bot.command("start", async (ctx) => {
   await showPageList(ctx);
@@ -53,12 +51,8 @@ bot.command("download", async (ctx) => {
   ctx.reply(`internal-download ${chunkIds}`);
 });
 
-bot.command("test", async (ctx) => {
-  // await sendChunks(ctx);
-
-  ctx.reply("ok");
+bot.start().catch((reason) => {
+  console.log({ reason });
 });
-
-bot.start();
 
 console.log(`Server running at ${server.url}`);
