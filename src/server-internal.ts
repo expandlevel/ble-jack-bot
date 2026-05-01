@@ -4,7 +4,7 @@ import { bot } from "./bot-external";
 export const server = Bun.serve({
   port: 6701,
   routes: {
-    "/": async (req) => {
+    "/": async () => {
       return Response.json({ message: "hi" });
     },
     "/webhook": (req) => {

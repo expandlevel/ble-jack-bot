@@ -1,5 +1,4 @@
 import { webhookCallback } from "grammy";
-import { config } from "./config";
 import { bot } from "./bot-external";
 
 export const server = Bun.serve({
@@ -12,12 +11,26 @@ export const server = Bun.serve({
       const handleUpdate = webhookCallback(bot, "bun");
       return handleUpdate(req);
     },
-    "/tmp_download/parts/:partName": (request) => {
+    tmp_download: async () => {
+      const filePath = `./tmp_download/tmp.mp4`;
+      const file = Bun.file(filePath);
+
+      if (!(await file.exists())) {
+        return Response.json({ status: "not found" });
+      }
+      return new Response(file);
+    },
+    "/tmp_download/parts/:partName": async (request) => {
       const partName = request.params.partName;
 
       const filePath = `./tmp_download/parts/${partName}`;
+      const file = Bun.file(filePath);
 
-      return new Response(Bun.file(filePath));
+      if (!(await file.exists())) {
+        return Response.json({ status: "not found" });
+      }
+
+      return new Response(file);
     },
   },
 });
