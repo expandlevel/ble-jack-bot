@@ -1,13 +1,12 @@
 {
   "name": "ble-jack-bot",
-  "module": "server.ts",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev:external": "bun --watch src/bot-external.ts",
-    "dev:internal": "bun --watch src/bot-internal.ts",
-    "start:external": "bun src/bot-external.ts",
-    "start:internal": "bun src/bot-internal.ts",
+    "dev:external": "bun --watch src/server-external.ts",
+    "dev:internal": "bun --watch src/server-internal.ts",
+    "start:external": "bun src/server-external.ts",
+    "start:internal": "bun src/server-internal.ts",
     "push": "git add . && git commit -m 'push' && git push origin main"
   },
   "devDependencies": {

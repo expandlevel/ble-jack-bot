@@ -4,7 +4,6 @@ import { showPageList } from "./lib/show-page-list";
 import { paginationMenu } from "./menus/pagination";
 import { downloadMenu } from "./menus/download";
 import { showMoreMenu } from "./menus/show-more";
-import { server } from "./server-external";
 import { downloadFile } from "./lib/download-file";
 import { splitFile } from "./lib/split-file";
 import { sendChunks } from "./lib/send-chunks";
@@ -16,7 +15,7 @@ function initial(): SessionData {
   return { pageNumber: 1, videoDownloadLinks: new Map() };
 }
 
-const bot = new Bot<MyContext>(config.bleExternalToken, {
+export const bot = new Bot<MyContext>(config.bleExternalToken, {
   client: {
     apiRoot: bleApiBaseUrl,
   },
@@ -70,9 +69,10 @@ bot.command("test", (ctx) => {
   });
 });
 
-bot.start();
-// .catch((reason) => {
-//   console.log({ reason });
-// });
+bot.hears("ping", (ctx) => {
+  ctx.reply("pong");
+});
 
-console.log(`Server running at ${server.url}`);
+bot.catch((reason) => {
+  console.log({ reason });
+});

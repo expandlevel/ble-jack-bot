@@ -1,10 +1,9 @@
 import { Bot } from "grammy";
 
-import { server } from "./server-internal";
 import { bleApiBaseUrl, config } from "./config";
 import { mergeChunks } from "./lib/merge-chunks";
 
-const bot = new Bot(config.bleInternalToken, {
+export const bot = new Bot(config.bleInternalToken, {
   client: {
     apiRoot: bleApiBaseUrl,
   },
@@ -54,6 +53,10 @@ bot.hears(/internal-download/, async (ctx) => {
   await mergeChunks();
 });
 
-bot.start();
+bot.hears("ping", (ctx) => {
+  ctx.reply("pong");
+});
 
-console.log(`Server running at ${server.url}`);
+bot.catch((reason) => {
+  console.log({ reason });
+});
