@@ -11,6 +11,7 @@ import { mergeChunks } from "./lib/merge-chunks";
 import { sendChunks } from "./lib/send-chunks";
 import { bleApiBaseUrl, config } from "./config";
 import { cleanupFiles } from "./lib/cleanup-files";
+import os from "node:os";
 
 function initial(): SessionData {
   return { pageNumber: 1, selectedVideo: "", videoDownloadLinks: [] };
@@ -54,6 +55,23 @@ bot.command("download", async (ctx) => {
 
 bot.command("test", async (ctx) => {
   // await sendChunks(ctx);
+
+  // Get the local network interfaces
+  const networkInterfaces = os.networkInterfaces();
+
+  // Find the IP address of your machine
+  let ipAddress = "";
+  for (const interfaceName in networkInterfaces) {
+    for (const networkInterface of networkInterfaces[interfaceName]) {
+      // Exclude internal network interfaces (localhost, etc.)
+      if (networkInterface.family === "IPv4" && !networkInterface.internal) {
+        ipAddress = networkInterface.address;
+        break;
+      }
+    }
+  }
+
+  console.log("Server IP Address:", ipAddress);
   ctx.reply("ok");
 });
 
