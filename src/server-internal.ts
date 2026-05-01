@@ -14,4 +14,6 @@ export const server = Bun.serve({
   },
 });
 
+await bot.start();
+
 console.log(`Server running at ${server.url}`);
