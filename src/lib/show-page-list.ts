@@ -1,5 +1,5 @@
 import { paginationMenu } from "../menus/pagination";
-import { showMoreMenu } from "../menus/show-more";
+// import { showMoreMenu } from "../menus/show-more";
 import type { MyContext } from "../types";
 import { extractPageList } from "./extract-page-list";
 
@@ -15,7 +15,7 @@ export async function showPageList(ctx: MyContext) {
 
     await ctx.replyWithPhoto(pageData.thumb, {
       caption: `# ${pageData.name}\n${pageData.duration}\n${pageData.href}`,
-      reply_markup: showMoreMenu,
+      // reply_markup: showMoreMenu,
     });
   }
 
