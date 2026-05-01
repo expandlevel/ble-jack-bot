@@ -69,7 +69,7 @@ bot.command("test", (ctx) => {
   });
 });
 
-bot.hears("ping", (ctx) => {
+bot.hears(/ping/i, (ctx) => {
   ctx.reply("pong");
 });
 

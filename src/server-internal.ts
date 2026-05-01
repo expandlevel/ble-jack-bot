@@ -1,5 +1,5 @@
 import { webhookCallback } from "grammy";
-import { bot } from "./bot-external";
+import { bot } from "./bot-internal";
 
 export const server = Bun.serve({
   port: 6701,
@@ -14,6 +14,6 @@ export const server = Bun.serve({
   },
 });
 
-await bot.start();
+bot.start();
 
 console.log(`Server running at ${server.url}`);

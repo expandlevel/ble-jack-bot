@@ -12,7 +12,11 @@ const ConfigSchema = z.object({
 //   bleInternalToken: Bun.env.BLE_INTERNAL_BOT_TOKEN,
 // });
 
+const BLE_EXTERNAL_BOT_TOKEN = "503298381:oH2RWICXjZ4PigGna8SGrAumI7Wmrxt6ebk";
+
+const BLE_INTERNAL_BOT_TOKEN = "1471840337:Dvx4WC_TXCw-BXCqZ1j3iLri9Vyf6m5gjsE";
+
 export const config = ConfigSchema.parse({
-  bleExternalToken: "503298381:oH2RWICXjZ4PigGna8SGrAumI7Wmrxt6ebk",
-  bleInternalToken: "1471840337:Dvx4WC_TXCw-BXCqZ1j3iLri9Vyf6m5gjsE",
+  bleExternalToken: BLE_EXTERNAL_BOT_TOKEN,
+  bleInternalToken: BLE_INTERNAL_BOT_TOKEN,
 });

@@ -1,26 +1,12 @@
-name: Run Code
+name: Run
 
 on: [push]
 
 jobs:
   run-external-bot:
     runs-on: ubuntu-latest
-    # permissions:
-    #   contents: write
     steps:
       - uses: actions/checkout@v6
-
-      # - name: Install dependencies
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y curl unzip
-
-      # - name: Install bun
-      #   run: |
-      #     curl -fsSL https://bun.com/install | bash
-      #     echo "$HOME/.bun/bin" >> $GITHUB_PATH
-      #     echo "BUN_INSTALL_DIR=$HOME/.bun" >> $GITHUB_ENV
-
       - uses: oven-sh/setup-bun@v2
 
       - name: Install bun dependencies
@@ -28,13 +14,3 @@ jobs:
 
       - name: Run External Bot
         run: bun run start:external
-
-      # - name: Commit & Push
-      #   run: |
-      #     BRANCH="${GITHUB_REF_NAME}"
-      #     git config user.name "github-actions"
-      #     git config user.email "github-actions@github.com"
-      #     git add downloads/
-      #     git commit -m "Add downloaded files from commit [skip ci]" || echo "Nothing to commit"
-      #     echo "🚀 Pushing to branch: $BRANCH"
-      #     git push origin HEAD:$BRANCH

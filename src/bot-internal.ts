@@ -53,7 +53,7 @@ bot.hears(/internal-download/, async (ctx) => {
   await mergeChunks();
 });
 
-bot.hears("ping", (ctx) => {
+bot.hears(/ping/i, (ctx) => {
   ctx.reply("pong");
 });
 
