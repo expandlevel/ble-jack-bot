@@ -51,8 +51,9 @@ bot.command("download", async (ctx) => {
   ctx.reply(`internal-download ${chunkIds}`);
 });
 
-bot.start().catch((reason) => {
-  console.log({ reason });
-});
+bot.start();
+//   .catch((reason) => {
+//   console.log({ reason });
+// });
 
 console.log(`Server running at ${server.url}`);
