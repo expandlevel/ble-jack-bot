@@ -7,6 +7,8 @@ import { downloadMenu } from "./download";
 export const showMoreMenu = new Menu<MyContext>("show-more").text(
   "show more",
   async (ctx) => {
+    await ctx.answerCallbackQuery();
+
     const caption = ctx.update.callback_query.message?.caption;
     const href = caption?.split("\n")[2];
 

@@ -4,6 +4,7 @@ import { showPageList } from "../lib/show-page-list";
 
 export const paginationMenu = new Menu<MyContext>("pagination-menu")
   .text("next", async (ctx) => {
+    await ctx.answerCallbackQuery();
     ctx.session.pageNumber++;
 
     const pageNumber = ctx.session.pageNumber;
@@ -12,6 +13,8 @@ export const paginationMenu = new Menu<MyContext>("pagination-menu")
     showPageList(ctx);
   })
   .text("prev", async (ctx) => {
+    await ctx.answerCallbackQuery();
+
     if (ctx.session.pageNumber !== 1) {
       ctx.session.pageNumber--;
 
