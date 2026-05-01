@@ -68,9 +68,8 @@ bot.command("test", (ctx) => {
   });
 });
 
-bot.start();
-//   .catch((reason) => {
-//   console.log({ reason });
-// });
+bot.start().catch((reason) => {
+  console.log({ reason });
+});
 
 console.log(`Server running at ${server.url}`);
