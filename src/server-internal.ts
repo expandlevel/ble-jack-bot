@@ -8,6 +8,8 @@ export const server = Bun.serve({
       return Response.json({ message: "hi internal" });
     },
     "/webhook": (req) => {
+      console.log("webhook called");
+
       const handleUpdate = webhookCallback(bot, "bun");
       return handleUpdate(req);
     },
