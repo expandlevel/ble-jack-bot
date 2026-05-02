@@ -12,6 +12,10 @@ export const server = Bun.serve({
       return handleUpdate(req);
     },
   },
+  tls: {
+    cert: Bun.file("./certificates/internal.pem"),
+    key: Bun.file("./certificates/internal-key.pem"),
+  },
 });
 
 bot.start();

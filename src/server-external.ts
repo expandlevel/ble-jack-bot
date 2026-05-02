@@ -32,6 +32,10 @@ export const server = Bun.serve({
       return new Response(file);
     },
   },
+  tls: {
+    cert: Bun.file("./certificates/external.pem"),
+    key: Bun.file("./certificates/external-key.pem"),
+  },
 });
 
 bot.start();

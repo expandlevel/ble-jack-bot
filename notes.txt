@@ -1,6 +1,8 @@
 issues:
-setup docker image (run in background)
-get a domain (with https)
+ - clone in internal server from github - done
+ - tsl - https
+ - setup docker image (run in background)
+ - get a domain (with https)
 
 
 webhook address

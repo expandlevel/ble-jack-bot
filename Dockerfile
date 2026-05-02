@@ -10,4 +10,4 @@ COPY . .
 
 USER bun
 EXPOSE 6700/tcp
-ENTRYPOINT [ "bun", "run", "start:exter" ]
+ENTRYPOINT [ "bun", "run", "start:external" ]
