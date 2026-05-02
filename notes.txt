@@ -1,21 +1,17 @@
 issues:
  - clone in internal server from github - done
  - tsl - https - done
- - setup docker image (run in background)
+ - setup docker image (run in background) - done
  - get a domain (with https)
 
 
 webhook address
 https://tapi.bale.ai/bot503298381:oH2RWICXjZ4PigGna8SGrAumI7Wmrxt6ebk/setWebhook?url=http://104.252.77.32:6700/webhook
 
-docker build -f ./Dockerfile.internal -t ble-jack-bot .
-
-docker build -f ./Dockerfile.external -t ble-jack-bot .
-
 docker compose -f ./docker-compose.internal.yml up
-
 docker compose -f ./docker-compose.internal.yml up -d
+docker compose -f ./docker-compose.internal.yml up --build -d
 
 docker compose -f ./docker-compose.external.yml up
-
 docker compose -f ./docker-compose.external.yml up -d
+docker compose -f ./docker-compose.external.yml up --build -d
