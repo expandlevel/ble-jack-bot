@@ -14,4 +14,8 @@ docker build -f ./Dockerfile.external -t ble-jack-bot .
 
 docker compose -f ./docker-compose.internal.yml up
 
+docker compose -f ./docker-compose.internal.yml up -d
+
 docker compose -f ./docker-compose.external.yml up
+
+docker compose -f ./docker-compose.external.yml up -d

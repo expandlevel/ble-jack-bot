@@ -5,7 +5,7 @@ export const server = Bun.serve({
   port: 6700,
   routes: {
     "/": () => {
-      return Response.json({ message: "hi" });
+      return Response.json({ message: "hi external" });
     },
     "/webhook": (req) => {
       return webhookCallback(bot, "bun")(req);
