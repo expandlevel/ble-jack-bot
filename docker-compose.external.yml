@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  ble-jack-bot:
+    build:
+      dockerfile: Dockerfile.external
+    ports:
+      - "6700:6700"
+    container_name: ble-jack-bot

@@ -10,7 +10,7 @@ export async function sendChunks(ctx: MyContext) {
   for (const chunkName of chunksList) {
     const message = await ctx.replyWithDocument(
       // TODO:
-      `http://localhost:6700/tmp_download/parts/${chunkName}`,
+      `https://104.252.77.32/tmp_download/parts/${chunkName}`,
     );
 
     //
