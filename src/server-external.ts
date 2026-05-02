@@ -2,12 +2,14 @@ import { webhookCallback } from "grammy";
 import { bot } from "./bot-external";
 
 export const server = Bun.serve({
-  port: 6700,
+  port: 88,
   routes: {
     "/": () => {
       return Response.json({ message: "hi external" });
     },
     "/webhook": (req) => {
+      console.log("webhook external called");
+
       return webhookCallback(bot, "bun")(req);
     },
     "/tmp_download": async () => {

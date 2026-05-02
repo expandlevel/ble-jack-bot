@@ -3,5 +3,5 @@ services:
     build:
       dockerfile: Dockerfile.external
     ports:
-      - "6700:6700"
+      - "88:88"
     container_name: ble-jack-bot

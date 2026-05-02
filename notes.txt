@@ -6,8 +6,13 @@ issues:
 
 
 webhook address
+
 webhook internal:
-https://tapi.bale.ai/bot503298381:oH2RWICXjZ4PigGna8SGrAumI7Wmrxt6ebk/setWebhook?url=https://5.10.249.18:6701/webhook
+https://tapi.bale.ai/bot1471840337:Dvx4WC_TXCw-BXCqZ1j3iLri9Vyf6m5gjsE/setWebhook?url=https://5.10.249.18:88/webhook
+
+webhook external:
+https://tapi.bale.ai/bot503298381:oH2RWICXjZ4PigGna8SGrAumI7Wmrxt6ebk/setWebhook?url=https://5.10.249.18:88/webhook
+
 
 docker compose -f ./docker-compose.internal.yml up
 docker compose -f ./docker-compose.internal.yml up -d
