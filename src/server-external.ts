@@ -38,6 +38,6 @@ export const server = Bun.serve({
   },
 });
 
-// bot.start();
+bot.start();
 
 console.log(`Server running at ${server.url}`);
