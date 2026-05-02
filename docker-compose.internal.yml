@@ -4,5 +4,6 @@ services:
       dockerfile: Dockerfile.internal
     ports:
       # - "6701:6701"
-      - "443:443"
+      # - "443:443"
+      - "88:88"
     container_name: ble-jack-bot

@@ -4,8 +4,8 @@ import { config } from "./config";
 
 export const server = Bun.serve({
   // port: 6701,
-  port: 443,
-
+  // port: 443,
+  port: 88,
   routes: {
     "/": async () => {
       return Response.json({ message: "hi internal" });
