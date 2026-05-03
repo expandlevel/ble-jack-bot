@@ -16,14 +16,9 @@ export async function sendChunks(ctx: MyContext) {
 
   for (const chunkName of filteredChunksList) {
     const documentUrl = `https://104.252.77.32:88/tmp_download/parts/${chunkName}`;
-    console.log(`document:: ${documentUrl}`);
     await ctx.reply(`document:: ${documentUrl}`);
 
-    // const message = await ctx.replyWithDocument(documentUrl);
-
-    //
-    const dUrl = path.resolve(`./tmp_download/parts/${chunkName}`);
-    const message = await ctx.replyWithDocument(new InputFile(dUrl));
+    const message = await ctx.replyWithDocument(documentUrl);
 
     messageIds.push(message.document.file_id);
   }

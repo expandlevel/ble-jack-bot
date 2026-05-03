@@ -35,7 +35,7 @@ bot.hears(/internal-download/, async (ctx) => {
 
     const fileName = "tmp.mp4";
     const filePart = Bun.file(
-      `./tmp_download/parts/${fileName}.part${index}.zip`,
+      `./tmp_download/parts/${fileName}.part${index}.mp4`,
     );
 
     const writer = filePart.writer();

@@ -62,10 +62,6 @@ bot.command("download", async (ctx) => {
 
 bot.hears(/ping/i, (ctx) => {
   ctx.reply("pong");
-  // const fg = path.resolve("./tmp_download/.gitkeep");
-  // console.log({ fg });
-
-  // ctx.replyWithDocument(new InputFile(createReadStream(fg)));
 });
 
 bot.catch((reason) => {
