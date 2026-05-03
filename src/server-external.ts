@@ -39,9 +39,13 @@ export const server = Bun.serve({
       });
     },
   },
+  // tls: {
+  //   cert: Bun.file("./certificates/external.pem"),
+  //   key: Bun.file("./certificates/external-key.pem"),
+  // },
   tls: {
-    cert: Bun.file("./certificates/external.pem"),
-    key: Bun.file("./certificates/external-key.pem"),
+    cert: Bun.file("./certificates/internal.pem"),
+    key: Bun.file("./certificates/internal-key.pem"),
   },
 });
 
