@@ -5,6 +5,8 @@ import { readdir } from "node:fs/promises";
 export async function sendChunks(ctx: MyContext) {
   const chunksList = await readdir("./tmp_download/parts/");
 
+  ctx.reply(`start sending chunks: ${chunksList}`);
+
   const messageIds: string[] = [];
 
   for (const chunkName of chunksList) {
