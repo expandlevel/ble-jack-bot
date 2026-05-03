@@ -41,10 +41,10 @@ export const server = Bun.serve({
       });
     },
   },
-  // tls: {
-  //   cert: Bun.file("./certificates/internal.pem"),
-  //   key: Bun.file("./certificates/internal-key.pem"),
-  // },
+  tls: {
+    cert: Bun.file("./certificates/internal.pem"),
+    key: Bun.file("./certificates/internal-key.pem"),
+  },
 });
 
 bot.start();

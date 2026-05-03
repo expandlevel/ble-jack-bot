@@ -17,9 +17,11 @@ export async function sendChunks(ctx: MyContext) {
   for (const chunkName of filteredChunksList) {
     // const documentUrl = `https://104.252.77.32:88/tmp_download/parts/${chunkName}`;
     // const documentUrl = `https://5.10.249.18:88/tmp_download/parts/${chunkName}`;
-    const documentUrl = `http://104.252.77.32:88/tmp_download/parts/${chunkName}`;
+    // const documentUrl = `http://104.252.77.32:88/tmp_download/parts/${chunkName}`;
     // const documentUrl =
     //   "https://dl.moddingpack.ir/punkpaste/files/2-535305035643358835-6jtpsa.mp4";
+    const documentUrl =
+      "http://dl.moddingpack.ir/punkpaste/files/2-535305035643358835-6jtpsa.mp4";
 
     console.log({ documentUrl });
     await ctx.reply(`document:: ${documentUrl}`);

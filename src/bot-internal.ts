@@ -4,6 +4,7 @@ import { bleApiBaseUrl, config } from "./config";
 import { mergeChunks } from "./lib/merge-chunks";
 import { uploadInternalStorage } from "./lib/upload-internal-storage";
 import { cleanupFiles } from "./lib/cleanup-files";
+import { sendChunks } from "./lib/send-chunks";
 
 export const bot = new Bot(config.bleInternalToken, {
   client: {
@@ -60,6 +61,13 @@ bot.hears(/internal-download/, async (ctx) => {
   ctx.reply(`link upload:: ${completeUpload.link}`);
 
   cleanupFiles();
+});
+
+bot.command("test", (ctx) => {
+  // @ts-ignore
+  const chunkIds = sendChunks(ctx);
+  console.log({ chunkIds });
+  ctx.reply(`internal-download ${chunkIds}`);
 });
 
 bot.hears(/ping/i, (ctx) => {
