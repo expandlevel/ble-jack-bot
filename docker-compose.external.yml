@@ -2,8 +2,6 @@ services:
   ble-jack-bot:
     build:
       dockerfile: Dockerfile.external
-    tmpfs:
-      - /tmp_download
     ports:
       - "88:88"
     container_name: ble-jack-bot
