@@ -3,7 +3,7 @@ import { bot } from "./bot-internal";
 import { config } from "./config";
 
 export const server = Bun.serve({
-  port: 89,
+  port: 88,
   routes: {
     "/": async () => {
       return Response.json({ message: "hi internal" });

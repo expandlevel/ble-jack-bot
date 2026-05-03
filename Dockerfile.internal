@@ -9,6 +9,5 @@ RUN bun install --registry=https://npm.devneeds.ir/
 COPY --chown=bun:bun . .
 
 USER bun
-# EXPOSE 88/tcp
-EXPOSE 89/tcp
+EXPOSE 88/tcp
 ENTRYPOINT [ "bun", "run", "start:internal" ]
