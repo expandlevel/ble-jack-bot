@@ -34,7 +34,9 @@ bot.hears(/internal-download/, async (ctx) => {
     const response = await fetch(fileUrl);
 
     const fileName = "tmp.mp4";
-    const filePart = Bun.file(`./tmp_download/parts/${fileName}.part${index}`);
+    const filePart = Bun.file(
+      `./tmp_download/parts/${fileName}.part${index}.zip`,
+    );
 
     const writer = filePart.writer();
     const reader = response.body?.getReader();

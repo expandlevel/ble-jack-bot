@@ -3,14 +3,14 @@ export async function splitFile() {
   const downloadUrl = `./tmp_download/${fileName}`;
   const file = Bun.file(downloadUrl);
 
-  // const CHUNK_SIZE = 19 * 1024 * 1024;
-  const CHUNK_SIZE = 10 * 1024 * 1024;
+  const CHUNK_SIZE = 19 * 1024 * 1024;
+  // const CHUNK_SIZE = 10 * 1024 * 1024;
 
   let chunkIndex = 0;
   let bytesWrittenInChunk = 0;
 
   let writer = Bun.file(
-    `./tmp_download/parts/${fileName}.part${chunkIndex}`,
+    `./tmp_download/parts/${fileName}.part${chunkIndex}.zip`,
   ).writer();
 
   const reader = file.stream().getReader();
@@ -32,7 +32,7 @@ export async function splitFile() {
         await writer.end();
         chunkIndex++;
         writer = Bun.file(
-          `./tmp_download/parts/${fileName}.part${chunkIndex}`,
+          `./tmp_download/parts/${fileName}.part${chunkIndex}.zip`,
         ).writer();
         bytesWrittenInChunk = 0;
       }

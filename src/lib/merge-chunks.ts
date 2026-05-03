@@ -7,7 +7,7 @@ export async function mergeChunks() {
   let chunkIndex = 0;
 
   while (true) {
-    const chunkPath = `./tmp_download/parts/${fileName}.part${chunkIndex}`;
+    const chunkPath = `./tmp_download/parts/${fileName}.part${chunkIndex}.zip`;
     const chunkFile = Bun.file(chunkPath);
 
     if (!(await chunkFile.exists())) break;
