@@ -3,5 +3,6 @@ services:
     build:
       dockerfile: Dockerfile.internal
     ports:
-      - "88:88"
+      # - "88:88"
+      - "89:89"
     container_name: ble-jack-bot
