@@ -39,7 +39,7 @@ async function show(href: string, message_id: number, ctx: MyContext) {
     // if (ctx.chatId) {
     //   return ctx.api.editMessageText(ctx.chatId, message_id, "not found");
     // } else {
-    return ctx.api.sendMessage(Number(ctx.chatId), "not found");
+    return ctx.reply("not found");
     // }
   }
 
@@ -60,10 +60,9 @@ async function show(href: string, message_id: number, ctx: MyContext) {
 
   if (!ctx.chatId) return;
 
-  ctx.api.sendMediaGroup(ctx.chatId, mediaGroup).then(() => {
+  ctx.replyWithMediaGroup(mediaGroup).then(() => {
     pageData.title &&
-      ctx.api.sendMessage(
-        Number(ctx.chatId),
+      ctx.reply(
         `
         ${pageData.title} \n\n
         ${linksLabel}

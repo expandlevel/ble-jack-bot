@@ -1,13 +1,19 @@
 import type { CommandContext } from "grammy";
 import type { MyContext } from "../types";
 
-export async function downloadFile(ctx: CommandContext<MyContext>) {
+export async function downloadFile(
+  ctx: CommandContext<MyContext>,
+  url?: string,
+) {
   const message = await ctx.reply("start downloading...");
 
   // const fileUrl =
+  //   url ||
   //   "https://dl.moddingpack.ir/punkpaste/files/2-522203351294048302-evjn3u.mp4";
   const fileUrl =
+    url ||
     "https://v1.cdnde.com/x1/upload_14d6b1cd674297c12d7a11bed2d792af/47318/47318_240p.mp4";
+
   const fileName = "tmp.mp4";
   const response = await fetch(fileUrl);
 
@@ -25,17 +31,9 @@ export async function downloadFile(ctx: CommandContext<MyContext>) {
   const interval = setInterval(() => {
     if (total) {
       const percent = (downloaded / total) * 100;
-      ctx.api.editMessageText(
-        ctx.chatId,
-        message.message_id,
-        `Progress: ${percent.toFixed(2)}%`,
-      );
+      ctx.reply(`Progress: ${percent.toFixed(2)}%`);
     } else {
-      ctx.api.editMessageText(
-        ctx.chatId,
-        message.message_id,
-        `Downloaded: ${downloaded} bytes`,
-      );
+      ctx.reply(`Downloaded: ${downloaded} bytes`);
     }
   }, 3000);
 
@@ -50,5 +48,5 @@ export async function downloadFile(ctx: CommandContext<MyContext>) {
   clearInterval(interval);
   await writer.end();
 
-  ctx.api.editMessageText(ctx.chatId, message.message_id, "Download complete!");
+  ctx.reply("Download complete!");
 }

@@ -2,6 +2,8 @@ import { Bot } from "grammy";
 
 import { bleApiBaseUrl, config } from "./config";
 import { mergeChunks } from "./lib/merge-chunks";
+import { uploadInternalStorage } from "./lib/upload-internal-storage";
+import { cleanupFiles } from "./lib/cleanup-files";
 
 export const bot = new Bot(config.bleInternalToken, {
   client: {
@@ -10,6 +12,8 @@ export const bot = new Bot(config.bleInternalToken, {
 });
 
 bot.hears(/internal-download/, async (ctx) => {
+  console.log("download command");
+
   const fullText = ctx.message?.text;
 
   const messageChunkIds = fullText?.slice(18).split(",");
@@ -21,10 +25,8 @@ bot.hears(/internal-download/, async (ctx) => {
 
   const message = await ctx.reply("start downloading chunks...");
 
-  messageChunkIds.forEach(async (messageChunkId, index) => {
-    await ctx.api.editMessageText(
-      ctx.chatId,
-      message.message_id,
+  for (const [index, messageChunkId] of messageChunkIds.entries()) {
+    ctx.reply(
       `start downloading chunks... \n\n chunk ${index + 1}/${messageChunkIds.length}`,
     );
     const bleFile = await ctx.api.getFile(messageChunkId);
@@ -48,9 +50,14 @@ bot.hears(/internal-download/, async (ctx) => {
     }
 
     await writer.end();
-  });
+  }
 
   await mergeChunks();
+
+  const completeUpload = await uploadInternalStorage();
+  ctx.reply(`link upload:: ${completeUpload.link}`);
+
+  cleanupFiles();
 });
 
 bot.hears(/ping/i, (ctx) => {

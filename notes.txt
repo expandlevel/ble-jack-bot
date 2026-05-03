@@ -1,9 +1,8 @@
 issues:
- - clone in internal server from github - done
- - tsl - https - done
- - setup docker image (run in background) - done
+ - set webhook
+ - test and debug
+ - compile workflow (upload internal storage and...)
  - get a domain (with https)
-
 
 webhook address
 

@@ -9,11 +9,9 @@ export async function sendChunks(ctx: MyContext) {
 
   for (const chunkName of chunksList) {
     const message = await ctx.replyWithDocument(
-      // TODO:
       `https://104.252.77.32/tmp_download/parts/${chunkName}`,
     );
 
-    //
     messageIds.push(message.document.file_id);
   }
 

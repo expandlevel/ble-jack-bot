@@ -45,7 +45,9 @@ bot.command("page", (ctx) => {
 });
 
 bot.command("download", async (ctx) => {
-  await downloadFile(ctx);
+  const downloadUrl = ctx.match;
+
+  await downloadFile(ctx, downloadUrl);
 
   await splitFile();
 
@@ -54,19 +56,6 @@ bot.command("download", async (ctx) => {
   cleanupFiles();
 
   ctx.reply(`internal-download ${chunkIds}`);
-});
-
-const testMenu = new Menu("test-menu").text("test", (ctx) => {
-  ctx.reply("ok");
-  setTimeout(() => {
-    ctx.chatId && ctx.api.sendMessage(ctx.chatId, "ok 2");
-  }, 5000);
-});
-bot.use(testMenu);
-bot.command("test", (ctx) => {
-  ctx.reply("test", {
-    reply_markup: testMenu,
-  });
 });
 
 bot.hears(/ping/i, (ctx) => {

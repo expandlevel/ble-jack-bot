@@ -9,6 +9,11 @@ export async function cleanupFiles() {
 
   const glob = new Glob("./tmp_download/parts/tmp.mp4.*");
   for await (const file of glob.scan(".")) {
-    await Bun.file(file).delete();
+    Bun.file(file).delete();
+  }
+
+  const mergedFile = Bun.file("./tmp_download/tmp.mp4.merged.mp4");
+  if (await mergedFile.exists()) {
+    await mergedFile.delete();
   }
 }

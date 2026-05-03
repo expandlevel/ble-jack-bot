@@ -13,7 +13,7 @@ export async function showPageList(ctx: MyContext) {
 
     if (!ctx.chatId) return;
 
-    ctx.api.sendPhoto(ctx.chatId, pageData.thumb, {
+    ctx.replyWithPhoto(pageData.thumb, {
       caption: `# ${pageData.name}\n${pageData.duration}\n${pageData.href}`,
       reply_markup: showMoreMenu,
     });
