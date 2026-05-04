@@ -1,7 +1,7 @@
 import type { MyContext } from "../types";
 
 export async function mergeChunks(ctx: MyContext) {
-  const outputPath = `./tmp_download/.merged.mp4`;
+  const outputPath = `./tmp_download/merged.mp4`;
   const writer = Bun.file(outputPath).writer();
 
   let chunkIndex = 0;

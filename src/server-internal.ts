@@ -13,6 +13,16 @@ export const server = Bun.serve({
 
       return webhookCallback(bot, "bun")(req);
     },
+
+    "/tmp_merged": async () => {
+      const filePath = `./tmp_download/merged.mp4`;
+      const file = Bun.file(filePath);
+
+      if (!(await file.exists())) {
+        return Response.json({ status: "not found" });
+      }
+      return new Response(file);
+    },
   },
   // tls: {
   //   cert: Bun.file("./certificates/internal.pem"),

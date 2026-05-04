@@ -58,7 +58,7 @@ bot.hears(/internal-download/, async (ctx) => {
   // const completeUpload = await uploadInternalStorage();
   // ctx.reply(`link upload:: ${completeUpload.link}`);
 
-  // cleanupFiles();
+  cleanupFiles();
 });
 
 bot.command("merge", async (ctx) => {
