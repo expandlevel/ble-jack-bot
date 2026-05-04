@@ -1,7 +1,7 @@
 import { Bot } from "grammy";
 
 import { bleApiBaseUrl, config } from "./config";
-// import { mergeChunks } from "./lib/merge-chunks";
+import { mergeChunks } from "./lib/merge-chunks";
 import { uploadInternalStorage } from "./lib/upload-internal-storage";
 import { cleanupFiles } from "./lib/cleanup-files";
 import { sendChunks } from "./lib/send-chunks";
