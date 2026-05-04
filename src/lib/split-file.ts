@@ -7,7 +7,7 @@ export async function splitFile() {
   let chunkIndex = 0;
   let bytesWrittenInChunk = 0;
 
-  let writer = Bun.file(`./tmp_download/parts/part${chunkIndex}`).writer();
+  let writer = Bun.file(`./tmp_download/parts/part${chunkIndex}.mp4`).writer();
 
   const reader = file.stream().getReader();
 
@@ -27,7 +27,9 @@ export async function splitFile() {
       if (bytesWrittenInChunk >= CHUNK_SIZE) {
         await writer.end();
         chunkIndex++;
-        writer = Bun.file(`./tmp_download/parts/part${chunkIndex}`).writer();
+        writer = Bun.file(
+          `./tmp_download/parts/part${chunkIndex}.mp4`,
+        ).writer();
         bytesWrittenInChunk = 0;
       }
     }

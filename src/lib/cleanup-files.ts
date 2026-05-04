@@ -7,7 +7,7 @@ export async function cleanupFiles() {
     await tmpFile.delete();
   }
 
-  const glob = new Glob("./tmp_download/parts/*");
+  const glob = new Glob("./tmp_download/parts/*.mp4");
   for await (const file of glob.scan(".")) {
     Bun.file(file).delete();
   }

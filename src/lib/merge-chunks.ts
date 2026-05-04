@@ -7,7 +7,7 @@ export async function mergeChunks(ctx: MyContext) {
   let chunkIndex = 0;
 
   while (true) {
-    const chunkPath = `./tmp_download/parts/part${chunkIndex}`;
+    const chunkPath = `./tmp_download/parts/part${chunkIndex}.mp4`;
     const chunkFile = Bun.file(chunkPath);
 
     if (!(await chunkFile.exists())) break;

@@ -15,7 +15,7 @@ export async function sendChunks(ctx: MyContext) {
   const messageIds: string[] = [];
 
   for (const chunkName of filteredChunksList) {
-    const documentUrl = `http://check-test-bot-internal.work.gd/tmp_download/parts/${chunkName}`;
+    const documentUrl = `http://check-test-bot-internal.work.gd/tmp_download/parts/${chunkName}.mp4`;
 
     console.log({ documentUrl });
     await ctx.reply(`sending chunk:: ${documentUrl}`);

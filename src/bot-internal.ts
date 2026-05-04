@@ -32,26 +32,36 @@ bot.hears(/internal-download/, async (ctx) => {
     ctx.reply(
       `start downloading chunks... \n\n chunk ${index + 1}/${messageChunkIds.length}`,
     );
-    const bleFile = await ctx.api.getFile(messageChunkId);
-    const fileUrl = `https://tapi.bale.ai/file/bot${config.bleExternalToken}/${bleFile.file_path}`;
+    // const bleFile = await ctx.api.getFile(messageChunkId);
+    const fileUrl = `https://tapi.bale.ai/file/bot${config.bleExternalToken}/${messageChunkId}`;
+
     const response = await fetch(fileUrl);
 
-    const filePart = Bun.file(`./tmp_download/parts/part${index}`);
+    console.log({
+      // bleFile,
+      fileUrl,
+      // response,
+    });
 
-    const writer = filePart.writer();
-    const reader = response.body?.getReader();
-    if (!reader) {
-      throw new Error("No readable stream");
-    }
+    const filePart = Bun.file(`./tmp_download/parts/part${index}.mp4`);
 
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
+    //
+    await filePart.write(response);
+    //
+    // const writer = filePart.writer();
+    // const reader = response.body?.getReader();
+    // if (!reader) {
+    //   throw new Error("No readable stream");
+    // }
 
-      await writer.write(value);
-    }
+    // while (true) {
+    //   const { done, value } = await reader.read();
+    //   if (done) break;
 
-    await writer.end();
+    //   await writer.write(value);
+    // }
+
+    // await writer.end();
   }
 
   // @ts-ignore
@@ -63,19 +73,16 @@ bot.hears(/internal-download/, async (ctx) => {
   // cleanupFiles();
 });
 
-bot.command("test", async (ctx) => {
-  await downloadFile(
-    // @ts-ignore
-    ctx,
-    "https://dl.moddingpack.ir/punkpaste/files/2-535305035643358835-6jtpsa.mp4",
+bot.command("image", async (ctx) => {
+  const message = await ctx.replyWithDocument(
+    "https://img2.taw-bio.ir/2026/564412/1lltf2md.jpeg",
   );
-  //
-  await splitFile();
+  ctx.reply(`${message.document.file_id}`);
+});
 
+bot.command("merge", async (ctx) => {
   // @ts-ignore
-
-  // @ts-ignore
-  // await mergeChunks(ctx);
+  await mergeChunks(ctx);
   //
 });
 
