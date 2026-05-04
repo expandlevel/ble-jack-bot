@@ -60,9 +60,9 @@ bot.command("download", async (ctx) => {
   ctx.reply(`internal-download ${chunkIds}`);
 });
 
-bot.command("test", (ctx) => {
+bot.command("test", async (ctx) => {
   // @ts-ignore
-  const chunkIds = sendChunks(ctx);
+  const chunkIds = await sendChunks(ctx);
   console.log({ chunkIds });
   ctx.reply(`internal-download ${chunkIds}`);
 });
