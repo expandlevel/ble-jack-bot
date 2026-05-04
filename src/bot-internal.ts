@@ -52,8 +52,10 @@ bot.hears(/internal-download/, async (ctx) => {
     await writer.end();
   }
 
-  // @ts-ignore
-  await mergeChunks(ctx);
+  setTimeout(async () => {
+    // @ts-ignore
+    await mergeChunks(ctx);
+  }, 10000);
 
   // const completeUpload = await uploadInternalStorage();
   // ctx.reply(`link upload:: ${completeUpload.link}`);
@@ -61,9 +63,10 @@ bot.hears(/internal-download/, async (ctx) => {
   // cleanupFiles();
 });
 
-bot.command("merge", async (ctx) => {
-  // @ts-ignore
-  // await mergeChunks();
+bot.command("clean", async (ctx) => {
+  ctx.reply("start cleaning...");
+  await cleanupFiles();
+  ctx.reply("cleaning complete...");
 });
 
 bot.hears(/ping/i, (ctx) => {

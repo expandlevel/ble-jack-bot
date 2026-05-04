@@ -60,6 +60,12 @@ bot.command("download", async (ctx) => {
   ctx.reply(`internal-download ${chunkIds}`);
 });
 
+bot.command("clean", async (ctx) => {
+  ctx.reply("start cleaning...");
+  await cleanupFiles();
+  ctx.reply("cleaning complete...");
+});
+
 bot.hears(/ping/i, (ctx) => {
   ctx.reply("pong");
 });

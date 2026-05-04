@@ -12,6 +12,8 @@ export async function mergeChunks(ctx: MyContext) {
 
     if (!(await chunkFile.exists())) break;
 
+    ctx.reply(`merge chunk ${chunkPath}`);
+
     const reader = chunkFile.stream().getReader();
 
     while (true) {
