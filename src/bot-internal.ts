@@ -43,7 +43,7 @@ bot.hears(/internal-download/, async (ctx) => {
       // response,
     });
 
-    const filePart = Bun.file(`./tmp_download/parts/part${index}.mp4`);
+    const filePart = Bun.file(`./tmp_download/parts/part${index}.zip`);
 
     //
     await filePart.write(response);
