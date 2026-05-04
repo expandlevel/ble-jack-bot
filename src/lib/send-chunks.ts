@@ -123,13 +123,13 @@ export async function sendChunks(ctx: MyContext) {
     //
     try {
       // Send a document with automatic retries
-      const result = await replyWithDocumentRetry(
+      const message = await replyWithDocumentRetry(
         ctx,
         documentUrl,
         {},
         { maxAttempts: 5, initialDelayMs: 2000 },
       );
-      await ctx.reply(`Document sent: ${result.message_id}`);
+      messageIds.push(message.document.file_id);
     } catch (error) {
       console.error("Failed to send document after retries:", error);
       await ctx.reply("Sorry, could not send the document. Please try later.");
