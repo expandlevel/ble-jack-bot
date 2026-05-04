@@ -1,3 +1,10 @@
+send chunk issue:
+  http address ok
+  - access external address?
+  - https certificate issue?
+  - http address invalid?
+
+
 issues:
  - set webhook
  - test and debug
