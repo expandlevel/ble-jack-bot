@@ -71,43 +71,6 @@ bot.hears(/internal-download/, async (ctx) => {
   cleanupFiles();
 });
 
-//
-
-// bot.hears(/internal-download/, async (ctx) => {
-//   console.log("download command");
-
-//   const fullText = ctx.message?.text;
-
-//   const messageChunkIds = fullText?.slice(18).split(",");
-//   console.log({ messageChunkIds });
-
-//   if (!messageChunkIds?.length) {
-//     return;
-//   }
-
-//   const message = await ctx.reply("start downloading chunks...");
-
-//   for (const [index, messageChunkId] of messageChunkIds.entries()) {
-//     ctx.reply(
-//       `start downloading chunks... \n\n chunk ${index + 1}/${messageChunkIds.length}`,
-//     );
-//     const fileUrl = `https://tapi.bale.ai/file/bot${config.bleExternalToken}/${messageChunkId}`;
-
-//     const response = await fetch(fileUrl);
-
-//     console.log({
-//       fileUrl,
-//       response,
-//     });
-
-//     const filePart = Bun.file(`./tmp_download/parts/part${index}.zip`);
-//     await filePart.write(response);
-//   }
-
-//   // @ts-ignore
-//   await mergeChunks(ctx);
-// });
-
 bot.command("clean", async (ctx) => {
   ctx.reply("start cleaning...");
   await cleanupFiles();
