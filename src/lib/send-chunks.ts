@@ -104,9 +104,13 @@ async function replyWithDocumentRetry(
 export async function sendChunks(ctx: MyContext) {
   const chunksList = await readdir("./tmp_download/parts/");
 
-  const filteredChunksList = chunksList.filter(
-    (fileName) => fileName !== ".gitkeep",
-  );
+  const filteredChunksList = chunksList
+    .filter((fileName) => fileName !== ".gitkeep")
+    .toSorted((a, b) => {
+      const numA = parseInt(a.match(/\d+/)![0]);
+      const numB = parseInt(b.match(/\d+/)![0]);
+      return numA - numB;
+    });
 
   await ctx.reply(`start sending chunks: ${filteredChunksList}`);
 
