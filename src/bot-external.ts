@@ -60,13 +60,6 @@ bot.command("download", async (ctx) => {
   ctx.reply(`internal-download ${chunkIds}`);
 });
 
-bot.command("test", async (ctx) => {
-  // @ts-ignore
-  const chunkIds = await sendChunks(ctx);
-  console.log({ chunkIds });
-  ctx.reply(`internal-download ${chunkIds}`);
-});
-
 bot.hears(/ping/i, (ctx) => {
   ctx.reply("pong");
 });
