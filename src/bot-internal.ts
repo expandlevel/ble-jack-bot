@@ -6,6 +6,7 @@ import { uploadInternalStorage } from "./lib/upload-internal-storage";
 import { cleanupFiles } from "./lib/cleanup-files";
 import { sendChunks } from "./lib/send-chunks";
 import { splitFile } from "./lib/split-file";
+import { downloadFile } from "./lib/download-file";
 
 export const bot = new Bot(config.bleInternalToken, {
   client: {
@@ -15,6 +16,7 @@ export const bot = new Bot(config.bleInternalToken, {
 
 bot.hears(/internal-download/, async (ctx) => {
   console.log("download command");
+  await cleanupFiles();
 
   const fullText = ctx.message?.text;
 
@@ -62,11 +64,22 @@ bot.hears(/internal-download/, async (ctx) => {
   // cleanupFiles();
 });
 
-bot.command("merge", async (ctx) => {
+bot.command("test", async (ctx) => {
+  await downloadFile(
+    // @ts-ignore
+    ctx,
+    "https://dl.moddingpack.ir/punkpaste/files/2-535305035643358835-6jtpsa.mp4",
+  );
   //
-  // await splitFile();
+  await splitFile();
+
   // @ts-ignore
-  await mergeChunks(ctx);
+  const chunkIds = await sendChunks(ctx);
+
+  ctx.reply(`internal-download ${chunkIds}`);
+
+  // @ts-ignore
+  // await mergeChunks(ctx);
   //
 });
 
