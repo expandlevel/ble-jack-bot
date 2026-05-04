@@ -1,15 +1,9 @@
-send chunk issue:
-  http address ok
-  - access external address?
-  - https certificate issue?
-  - http address invalid?
-
-
 issues:
- - set webhook
- - test and debug
- - compile workflow (upload internal storage and...)
- - get a domain (with https)
+  - merge chunk issue
+  - set webhook
+  - test and debug - in progress
+  - compile workflow (upload internal storage and...)
+  - get a domain (with https)
 
 webhook address
 

@@ -5,6 +5,7 @@ import { mergeChunks } from "./lib/merge-chunks";
 import { uploadInternalStorage } from "./lib/upload-internal-storage";
 import { cleanupFiles } from "./lib/cleanup-files";
 import { sendChunks } from "./lib/send-chunks";
+import { splitFile } from "./lib/split-file";
 
 export const bot = new Bot(config.bleInternalToken, {
   client: {
@@ -52,15 +53,21 @@ bot.hears(/internal-download/, async (ctx) => {
     await writer.end();
   }
 
-  setTimeout(async () => {
-    // @ts-ignore
-    await mergeChunks(ctx);
-  }, 10000);
+  // @ts-ignore
+  await mergeChunks(ctx);
 
   // const completeUpload = await uploadInternalStorage();
   // ctx.reply(`link upload:: ${completeUpload.link}`);
 
   // cleanupFiles();
+});
+
+bot.command("merge", async (ctx) => {
+  //
+  // await splitFile();
+  // @ts-ignore
+  await mergeChunks(ctx);
+  //
 });
 
 bot.command("clean", async (ctx) => {
