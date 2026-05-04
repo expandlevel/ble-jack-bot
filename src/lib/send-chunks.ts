@@ -22,8 +22,10 @@ export async function sendChunks(ctx: MyContext) {
     //   "https://dl.moddingpack.ir/punkpaste/files/2-535305035643358835-6jtpsa.mp4";
     // const documentUrl =
     //   "http://dl.moddingpack.ir/punkpaste/files/2-535305035643358835-6jtpsa.mp4";
+    // const documentUrl =
+    //   "https://videos.pexels.com/video-files/5937411/5937411-sd_360_640_24fps.mp4";
     const documentUrl =
-      "https://videos.pexels.com/video-files/5937411/5937411-sd_360_640_24fps.mp4";
+      "http://videos.pexels.com/video-files/5937411/5937411-sd_360_640_24fps.mp4";
 
     console.log({ documentUrl });
     await ctx.reply(`document:: ${documentUrl}`);
