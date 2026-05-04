@@ -9,5 +9,6 @@ RUN bun install
 COPY --chown=bun:bun . .
 
 USER bun
-EXPOSE 88/tcp
+# EXPOSE 88/tcp
+EXPOSE 80/tcp
 ENTRYPOINT [ "bun", "run", "start:external" ]
