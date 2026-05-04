@@ -23,7 +23,12 @@ export const server = Bun.serve({
         return Response.json({ status: "not found" });
       }
 
-      return new Response(file);
+      return new Response(file, {
+        headers: {
+          "Content-Type": "video/mp4",
+          "Content-Length": String(file.size),
+        },
+      });
     },
   },
   // tls: {
