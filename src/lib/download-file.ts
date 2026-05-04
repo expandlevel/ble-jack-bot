@@ -9,7 +9,7 @@ export async function downloadFile(
 
   const fileUrl =
     url ||
-    "https://v1.cdnde.com/x1/upload_14d6b1cd674297c12d7a11bed2d792af/47318/47318_240p.mp4";
+    "https://v4.cdnde.com/x4/upload_d0f35087f684d03faf2eca166cd9fbbb/47335/47335_240p.mp4";
 
   const response = await fetch(fileUrl);
   const total = Number(response.headers.get("content-length")) || 0;
