@@ -1,9 +1,8 @@
 issues:
-  - merge chunk issue
-  - set webhook
   - test and debug - in progress
   - compile workflow (upload internal storage and...)
   - get a domain (with https)
+  - set webhook
 
 webhook address
 

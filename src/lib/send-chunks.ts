@@ -47,8 +47,8 @@ async function retry<T>(
   options: RetryOptions = {},
 ): Promise<T> {
   const {
-    maxAttempts = 3,
-    initialDelayMs = 1000,
+    maxAttempts = 5,
+    initialDelayMs = 3000,
     backoffFactor = 2,
     maxDelayMs = 10000,
     retryableErrors = isRetryableError,
@@ -127,12 +127,7 @@ export async function sendChunks(ctx: MyContext) {
     //
     try {
       // Send a document with automatic retries
-      const message = await replyWithDocumentRetry(
-        ctx,
-        documentUrl,
-        {},
-        { maxAttempts: 5, initialDelayMs: 3000 },
-      );
+      const message = await replyWithDocumentRetry(ctx, documentUrl);
       messageIds.push(message.document.file_id);
     } catch (error) {
       console.error("Failed to send document after retries:", error);

@@ -1,4 +1,6 @@
-export async function uploadInternalStorage() {
+import type { MyContext } from "../types";
+
+export async function uploadInternalStorage(ctx: MyContext) {
   const file = Bun.file(`./tmp_download/merged.mp4`);
 
   const fileBuffer = await file.arrayBuffer();
@@ -22,8 +24,10 @@ export async function uploadInternalStorage() {
   };
 
   console.log({ initData });
+  ctx.reply(`initiate upload - total chunks ${initData.total_chunks}`);
 
   for (let index = 0; index < initData.total_chunks; index++) {
+    ctx.reply(`upload chunk ${index + 1}/${initData.total_chunks}`);
     const start = index * initData.chunk_size;
     const end = Math.min(start + initData.chunk_size, file.size);
     const chunk = fileBuffer.slice(start, end);
