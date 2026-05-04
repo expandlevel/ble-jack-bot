@@ -26,5 +26,7 @@ export async function mergeChunks() {
 
   await writer.end();
 
+  console.log(`Merge ${chunkIndex} chunks`);
+
   console.log(`Merge complete: ${outputPath}`);
 }

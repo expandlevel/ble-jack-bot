@@ -3,8 +3,9 @@ export async function splitFile() {
   const downloadUrl = `./tmp_download/${fileName}`;
   const file = Bun.file(downloadUrl);
 
-  const CHUNK_SIZE = 19 * 1024 * 1024;
+  // const CHUNK_SIZE = 19 * 1024 * 1024;
   // const CHUNK_SIZE = 10 * 1024 * 1024;
+  const CHUNK_SIZE = 15 * 1024 * 1024;
 
   let chunkIndex = 0;
   let bytesWrittenInChunk = 0;

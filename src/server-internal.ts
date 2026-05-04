@@ -40,6 +40,15 @@ export const server = Bun.serve({
         },
       });
     },
+    //
+    "/tmp_merged": async () => {
+      const mergedFile = Bun.file("./tmp_download/tmp.mp4.merged.mp4");
+
+      if (!(await mergedFile.exists())) {
+        return Response.json({ status: "not found" });
+      }
+      return new Response(mergedFile);
+    },
   },
   // tls: {
   //   cert: Bun.file("./certificates/internal.pem"),

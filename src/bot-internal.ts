@@ -57,10 +57,10 @@ bot.hears(/internal-download/, async (ctx) => {
 
   await mergeChunks();
 
-  const completeUpload = await uploadInternalStorage();
-  ctx.reply(`link upload:: ${completeUpload.link}`);
+  // const completeUpload = await uploadInternalStorage();
+  // ctx.reply(`link upload:: ${completeUpload.link}`);
 
-  cleanupFiles();
+  // cleanupFiles();
 });
 
 bot.hears(/ping/i, (ctx) => {
