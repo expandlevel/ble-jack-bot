@@ -71,7 +71,7 @@ bot.hears(/internal-download/, async (ctx) => {
   }
 });
 
-bot.command("/upload", async (ctx) => {
+bot.command("upload", async (ctx) => {
   const completeUpload = await uploadInternalStorage(ctx);
   if (completeUpload?.link) {
     ctx.reply(`link upload:: ${completeUpload.link}`);
