@@ -131,7 +131,7 @@ export async function sendChunks(ctx: MyContext) {
         ctx,
         documentUrl,
         {},
-        { maxAttempts: 5, initialDelayMs: 2000 },
+        { maxAttempts: 5, initialDelayMs: 3000 },
       );
       messageIds.push(message.document.file_id);
     } catch (error) {
