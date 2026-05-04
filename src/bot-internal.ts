@@ -35,9 +35,7 @@ bot.hears(/internal-download/, async (ctx) => {
     const response = await fetch(fileUrl);
 
     const fileName = "tmp.mp4";
-    const filePart = Bun.file(
-      `./tmp_download/parts/${fileName}.part${index}.mp4`,
-    );
+    const filePart = Bun.file(`./tmp_download/parts/${fileName}.part${index}`);
 
     const writer = filePart.writer();
     const reader = response.body?.getReader();
@@ -55,7 +53,8 @@ bot.hears(/internal-download/, async (ctx) => {
     await writer.end();
   }
 
-  await mergeChunks();
+  // @ts-ignore
+  await mergeChunks(ctx);
 
   // const completeUpload = await uploadInternalStorage();
   // ctx.reply(`link upload:: ${completeUpload.link}`);

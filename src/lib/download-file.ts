@@ -7,9 +7,6 @@ export async function downloadFile(
 ) {
   const message = await ctx.reply("start downloading...");
 
-  // const fileUrl =
-  //   url ||
-  //   "https://dl.moddingpack.ir/punkpaste/files/2-522203351294048302-evjn3u.mp4";
   const fileUrl =
     url ||
     "https://v1.cdnde.com/x1/upload_14d6b1cd674297c12d7a11bed2d792af/47318/47318_240p.mp4";
