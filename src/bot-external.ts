@@ -47,6 +47,7 @@ bot.command("page", (ctx) => {
 });
 
 bot.command("download", async (ctx) => {
+  await cleanupFiles();
   const downloadUrl = ctx.match;
 
   await downloadFile(ctx, downloadUrl);

@@ -16,7 +16,6 @@ export const bot = new Bot(config.bleInternalToken, {
 
 bot.hears(/internal-download/, async (ctx) => {
   console.log("download command");
-  await cleanupFiles();
 
   const fullText = ctx.message?.text;
 
@@ -74,9 +73,6 @@ bot.command("test", async (ctx) => {
   await splitFile();
 
   // @ts-ignore
-  const chunkIds = await sendChunks(ctx);
-
-  ctx.reply(`internal-download ${chunkIds}`);
 
   // @ts-ignore
   // await mergeChunks(ctx);
