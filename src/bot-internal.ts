@@ -16,6 +16,7 @@ export const bot = new Bot(config.bleInternalToken, {
 });
 
 bot.hears(/internal-download/, async (ctx) => {
+  cleanupFiles();
   const fullText = ctx.message?.text;
 
   const messageChunkIds = fullText?.slice(18).split(",");
@@ -33,14 +34,13 @@ bot.hears(/internal-download/, async (ctx) => {
     const fileUrl = `https://tapi.bale.ai/file/bot${config.bleExternalToken}/${messageChunkId}`;
 
     try {
-      const response = await fetchWithRetry(fileUrl);
-
-      console.log({
-        fileUrl,
-        response,
-      });
-
       const filePart = Bun.file(`./tmp_download/parts/part${index}.zip`);
+
+      if (await filePart.exists()) {
+        await filePart.delete();
+      }
+
+      const response = await fetchWithRetry(fileUrl);
 
       const writer = filePart.writer();
       const reader = response.body?.getReader();
@@ -61,14 +61,23 @@ bot.hears(/internal-download/, async (ctx) => {
     }
   }
 
-  // @ts-ignore
   await mergeChunks(ctx);
 
-  // @ts-ignore
   const completeUpload = await uploadInternalStorage(ctx);
-  ctx.reply(`link upload:: ${completeUpload.link}`);
+  if (completeUpload?.link) {
+    ctx.reply(`link upload:: ${completeUpload.link}`);
+  } else {
+    ctx.reply(`internal storage upload issue`);
+  }
+});
 
-  cleanupFiles();
+bot.command("/upload", async (ctx) => {
+  const completeUpload = await uploadInternalStorage(ctx);
+  if (completeUpload?.link) {
+    ctx.reply(`link upload:: ${completeUpload.link}`);
+  } else {
+    ctx.reply(`internal storage upload issue`);
+  }
 });
 
 bot.command("clean", async (ctx) => {

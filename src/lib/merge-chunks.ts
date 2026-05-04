@@ -1,6 +1,7 @@
+import type { Context, HearsContext } from "grammy";
 import type { MyContext } from "../types";
 
-export async function mergeChunks(ctx: MyContext) {
+export async function mergeChunks(ctx: Context) {
   const outputPath = `./tmp_download/merged.mp4`;
   const writer = Bun.file(outputPath).writer();
 
@@ -28,9 +29,7 @@ export async function mergeChunks(ctx: MyContext) {
 
   await writer.end();
 
-  console.log(`Merge ${chunkIndex} chunks`);
   ctx.reply(`Merge ${chunkIndex} chunks`);
 
-  console.log(`Merge complete: ${outputPath}`);
   ctx.reply(`Merge complete: ${outputPath}`);
 }

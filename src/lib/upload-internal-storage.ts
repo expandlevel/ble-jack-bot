@@ -1,6 +1,7 @@
+import type { Context, HearsContext } from "grammy";
 import type { MyContext } from "../types";
 
-export async function uploadInternalStorage(ctx: MyContext) {
+export async function uploadInternalStorage(ctx: Context) {
   const file = Bun.file(`./tmp_download/merged.mp4`);
 
   const fileBuffer = await file.arrayBuffer();
@@ -53,7 +54,6 @@ export async function uploadInternalStorage(ctx: MyContext) {
   const completeUpload = (await completeUploadResponse.json()) as {
     link: string;
   };
-  console.log({ completeUpload });
 
   return completeUpload;
 }

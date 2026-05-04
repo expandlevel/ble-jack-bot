@@ -9,6 +9,8 @@ import { splitFile } from "./lib/split-file";
 import { sendChunks } from "./lib/send-chunks";
 import { bleApiBaseUrl, config } from "./config";
 import { cleanupFiles } from "./lib/cleanup-files";
+import { impit } from "./lib/utils";
+import * as cheerio from "cheerio";
 
 function initial(): SessionData {
   return { pageNumber: 1, videoDownloadLinks: new Map() };
@@ -25,7 +27,35 @@ bot.use(paginationMenu);
 bot.use(downloadMenu);
 bot.use(showMoreMenu);
 
-bot.command("start", async (ctx) => {
+bot.command("wow", async (ctx) => {
+  const pageResponse = await impit.fetch(
+    "https://www.wow.xxx/videos/bunny-fae-gets-spanked-and-fucked-by-four-cocks/",
+  );
+
+  const pageContent = await pageResponse.text();
+
+  const $ = cheerio.load(pageContent);
+
+  const downloadLink = $(".info-buttons__download").attr("href");
+  console.log({ downloadLink });
+
+  if (downloadLink) {
+    const getDownloadLink = await impit.fetch(downloadLink);
+    console.log({ getDownloadLink });
+    console.log({ url: getDownloadLink.url });
+    //////
+    const downloadUrl = getDownloadLink.url;
+    await downloadFile(ctx, downloadUrl);
+    await splitFile();
+    const chunkIds = await sendChunks(ctx);
+
+    ctx.reply(`internal-download ${chunkIds}`);
+  }
+
+  ctx.reply("ok");
+});
+
+bot.command("jos", async (ctx) => {
   const pageNumber = ctx.session.pageNumber;
   await ctx.reply(`current page ${pageNumber}`);
 
@@ -46,14 +76,9 @@ bot.command("page", (ctx) => {
 bot.command("download", async (ctx) => {
   await cleanupFiles();
   const downloadUrl = ctx.match;
-
   await downloadFile(ctx, downloadUrl);
-
   await splitFile();
-
   const chunkIds = await sendChunks(ctx);
-
-  cleanupFiles();
 
   ctx.reply(`internal-download ${chunkIds}`);
 });

@@ -1,4 +1,6 @@
 issues:
+  - fix download chunk from ble in internal bot
+  - add commands to 
   - test and debug - in progress
   - compile workflow (upload internal storage and...)
   - get a domain (with https)
@@ -20,3 +22,10 @@ docker compose -f ./docker-compose.internal.yml up --build -d
 docker compose -f ./docker-compose.external.yml up
 docker compose -f ./docker-compose.external.yml up -d
 docker compose -f ./docker-compose.external.yml up --build -d
+
+/////////////////////////////////
+
+https://img.wow.xxx/93814000/93814640/medium@2x/1.jpg
+
+https://cast.wow.xxx/preview/93814640.mp4
+
