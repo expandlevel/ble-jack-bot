@@ -55,7 +55,7 @@ bot.command("download", async (ctx) => {
 
   const chunkIds = await sendChunks(ctx);
 
-  // cleanupFiles();
+  cleanupFiles();
 
   ctx.reply(`internal-download ${chunkIds}`);
 });

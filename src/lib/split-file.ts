@@ -1,18 +1,13 @@
 export async function splitFile() {
-  const fileName = "tmp.mp4";
-  const downloadUrl = `./tmp_download/${fileName}`;
+  const downloadUrl = `./tmp_download/input.mp4`;
   const file = Bun.file(downloadUrl);
 
-  // const CHUNK_SIZE = 19 * 1024 * 1024;
-  // const CHUNK_SIZE = 10 * 1024 * 1024;
   const CHUNK_SIZE = 15 * 1024 * 1024;
 
   let chunkIndex = 0;
   let bytesWrittenInChunk = 0;
 
-  let writer = Bun.file(
-    `./tmp_download/parts/${fileName}.part${chunkIndex}`,
-  ).writer();
+  let writer = Bun.file(`./tmp_download/parts/part${chunkIndex}`).writer();
 
   const reader = file.stream().getReader();
 
@@ -32,9 +27,7 @@ export async function splitFile() {
       if (bytesWrittenInChunk >= CHUNK_SIZE) {
         await writer.end();
         chunkIndex++;
-        writer = Bun.file(
-          `./tmp_download/parts/${fileName}.part${chunkIndex}`,
-        ).writer();
+        writer = Bun.file(`./tmp_download/parts/part${chunkIndex}`).writer();
         bytesWrittenInChunk = 0;
       }
     }

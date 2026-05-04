@@ -13,32 +13,6 @@ export const server = Bun.serve({
 
       return webhookCallback(bot, "bun")(req);
     },
-    "/tmp_download": async () => {
-      const filePath = `./tmp_download/tmp.mp4`;
-      const file = Bun.file(filePath);
-
-      if (!(await file.exists())) {
-        return Response.json({ status: "not found" });
-      }
-      return new Response(file);
-    },
-    "/tmp_download/parts/:partName": async (request) => {
-      const partName = request.params.partName;
-
-      const filePath = `./tmp_download/parts/${partName}`;
-      const file = Bun.file(filePath);
-
-      if (!(await file.exists())) {
-        return Response.json({ status: "not found" });
-      }
-
-      return new Response(file, {
-        headers: {
-          "Content-Type": "video/mp4",
-          "Content-Length": String(file.size),
-        },
-      });
-    },
   },
   // tls: {
   //   cert: Bun.file("./certificates/external.pem"),

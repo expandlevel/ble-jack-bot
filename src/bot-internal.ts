@@ -1,7 +1,7 @@
 import { Bot } from "grammy";
 
 import { bleApiBaseUrl, config } from "./config";
-import { mergeChunks } from "./lib/merge-chunks";
+// import { mergeChunks } from "./lib/merge-chunks";
 import { uploadInternalStorage } from "./lib/upload-internal-storage";
 import { cleanupFiles } from "./lib/cleanup-files";
 import { sendChunks } from "./lib/send-chunks";
@@ -34,8 +34,7 @@ bot.hears(/internal-download/, async (ctx) => {
     const fileUrl = `https://tapi.bale.ai/file/bot${config.bleExternalToken}/${bleFile.file_path}`;
     const response = await fetch(fileUrl);
 
-    const fileName = "tmp.mp4";
-    const filePart = Bun.file(`./tmp_download/parts/${fileName}.part${index}`);
+    const filePart = Bun.file(`./tmp_download/parts/part${index}`);
 
     const writer = filePart.writer();
     const reader = response.body?.getReader();
@@ -60,6 +59,11 @@ bot.hears(/internal-download/, async (ctx) => {
   // ctx.reply(`link upload:: ${completeUpload.link}`);
 
   // cleanupFiles();
+});
+
+bot.command("merge", async (ctx) => {
+  // @ts-ignore
+  // await mergeChunks();
 });
 
 bot.hears(/ping/i, (ctx) => {

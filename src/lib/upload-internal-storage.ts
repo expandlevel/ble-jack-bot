@@ -1,6 +1,5 @@
 export async function uploadInternalStorage() {
-  const fileName = "tmp.mp4";
-  const file = Bun.file(`./tmp_download/${fileName}.merged.mp4`);
+  const file = Bun.file(`./tmp_download/merged.mp4`);
 
   const fileBuffer = await file.arrayBuffer();
 

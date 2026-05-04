@@ -11,11 +11,9 @@ export async function downloadFile(
     url ||
     "https://v1.cdnde.com/x1/upload_14d6b1cd674297c12d7a11bed2d792af/47318/47318_240p.mp4";
 
-  const fileName = "tmp.mp4";
   const response = await fetch(fileUrl);
-
   const total = Number(response.headers.get("content-length")) || 0;
-  const downloadUrl = `./tmp_download/${fileName}`;
+  const downloadUrl = `./tmp_download/input.mp4`;
   const file = Bun.file(downloadUrl);
   const writer = file.writer();
   let downloaded = 0;
