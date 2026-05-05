@@ -30,7 +30,7 @@ export async function downloadFile(
     } else {
       ctx.reply(`Downloaded: ${downloaded} bytes`);
     }
-  }, 3000);
+  }, 10000);
 
   while (true) {
     const { done, value } = await reader.read();

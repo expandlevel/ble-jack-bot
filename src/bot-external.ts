@@ -28,8 +28,11 @@ bot.use(downloadMenu);
 bot.use(showMoreMenu);
 
 bot.command("wow", async (ctx) => {
+  const pageUrl = ctx.match;
+
   const pageResponse = await impit.fetch(
-    "https://www.wow.xxx/videos/bunny-fae-gets-spanked-and-fucked-by-four-cocks/",
+    pageUrl ||
+      "https://www.wow.xxx/videos/jealous-they-fucked-her-pervtherapy-made-us-closer/",
   );
 
   const pageContent = await pageResponse.text();

@@ -10,7 +10,7 @@ export async function uploadInternalStorage(ctx: Context) {
   initFormData.append("name", String(file.name));
   initFormData.append("size", String(file.size));
   initFormData.append("mime", file.type);
-  initFormData.append("expiry_hours", "12");
+  initFormData.append("expiry_hours", "48");
   initFormData.append("gallery_visible", "0");
 
   const initResponse = await fetch("https://punkpaste.ir/upload/init", {
